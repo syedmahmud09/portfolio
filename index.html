@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ব্যক্তিগত পোর্টফোলিও</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8fbfb;
+            color: #2d3748;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #edf2f7;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1a202c;
+            text-transform: uppercase;
+        }
+
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+        }
+
+        nav a:hover, nav a.active {
+            color: #0d9488; /* Turquoise accent */
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .hero h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #1a202c;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #4a5568;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .projects-section {
+            margin-bottom: 40px;
+        }
+
+        .projects-section h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #1a202c;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 25px;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(13, 148, 136, 0.1);
+            border-color: #0d9488;
+        }
+
+        .project-card h3 {
+            color: #0d9488;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .project-card p {
+            color: #718096;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ffffff;
+            color: #2d3748;
+            border: 1px solid #cbd5e1;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background: #0d9488;
+            color: #ffffff;
+            border-color: #0d9488;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #edf2f7;
+            font-size: 14px;
+            color: #a0aec0;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav a {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header / Navigation -->
+        <header>
+            <div class="logo">আমার পোর্টফোলিও</div>
+            <nav>
+                <a href="#" class="active">Home</a>
+                <a href="#">Projects</a>
+                <a href="#">Contact</a>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="profile-img">👨‍💻</div>
+            <h1>আসসালামু আলাইকুম, আমি একজন ডেভেলপার</h1>
+            <p>আমি এইচটিএমএল, সিএসএস এবং জাভাস্ক্রিপ্ট ব্যবহার করে ক্লিন এবং ইউজার-ফ্রেন্ডলি ওয়েবসাইট তৈরি করতে পছন্দ করি। এটি গিটহাব পেজেসে হোস্টিং টেস্ট করার জন্য একটি সাধারণ ডেমো সাইট।</p>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects-section">
+            <h2>ফিচার্ড প্রজেক্টসমূহ</h2>
+            <div class="project-grid">
+                
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <h3>ই-কমার্স চ্যাটবট</h3>
+                    <p>মেটা ডেভেলপার অ্যাপ এবং হোয়াটসঅ্যাপ বিজনেস এপিআই ব্যবহার করে তৈরি একটি অটোমেটেড কমার্স সিস্টেম।</p>
+                    <a href="#" class="btn">View on GitHub</a>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <h3>ওয়েদার অ্যাপ</h3>
+                    <p>রিয়েল-টাইম আবহাওয়ার তথ্য দেখানোর জন্য এপিআই ইন্টিগ্রেশন ভিত্তিক একটি প্রজেক্ট।</p>
+                    <a href="#" class="btn">View on GitHub</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            &copy; 2026 | Built with GitHub Pages
+        </footer>
+    </div>
+
+</body>
+</html>
