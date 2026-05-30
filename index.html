@@ -1,217 +1,961 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ব্যক্তিগত পোর্টফোলিও</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Syed — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=JetBrains+Mono:wght@300;400;500&family=Hind+Siliguri:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-        body {
-            background-color: #f8fbfb;
-            color: #2d3748;
-            line-height: 1.6;
-            padding: 20px;
-        }
+<style>
+/* ═══════════════════════════════════════════
+   CONFIGURATION — এখানে তোমার তথ্য বদলাও
+   ═══════════════════════════════════════════ */
+:root {
+  --bg:#0a0a08; --bg2:#111110; --bg3:#1a1a17;
+  --border:#2a2a25; --text:#e8e6df; --text2:#9a9890; --text3:#5a5850;
+  --accent:#c9a84c; --accent2:#8b6914; --red:#c94c4c; --green:#4ca876;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --font-body:'Hind Siliguri',sans-serif;
+}
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.7;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.35}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:2px}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.2}
+code,pre{font-family:var(--font-mono)}
+a{color:var(--accent);text-decoration:none;transition:opacity .2s}
+a:hover{opacity:.7}
+::selection{background:var(--accent);color:var(--bg)}
+.wrap{max-width:900px;margin:0 auto;padding:0 2rem}
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #edf2f7;
-            padding-bottom: 20px;
-            margin-bottom: 40px;
-        }
+/* ANIMATIONS */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes pulse{0%,100%{box-shadow:0 0 8px var(--green)}50%{box-shadow:0 0 20px var(--green),0 0 30px rgba(76,168,118,.4)}}
+@keyframes growBar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes scrollSlide{0%{left:-100%}60%{left:100%}100%{left:100%}}
+@keyframes bounce{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-8px);opacity:1}}
+@keyframes slideRight{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #1a202c;
-            text-transform: uppercase;
-        }
+.afu{animation:fadeInUp .6s ease forwards}
+.s1{animation-delay:.1s;opacity:0}
+.s2{animation-delay:.25s;opacity:0}
+.s3{animation-delay:.4s;opacity:0}
+.s4{animation-delay:.55s;opacity:0}
+.s5{animation-delay:.8s;opacity:0}
 
-        nav a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: #4a5568;
-            font-weight: 500;
-        }
+/* UTILITIES */
+.tag{display:inline-block;font-family:var(--font-mono);font-size:.68rem;padding:.18rem .55rem;border:1px solid var(--border);color:var(--text2);letter-spacing:.05em;text-transform:uppercase}
+.label{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+.sec-title{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;margin-bottom:1.5rem;line-height:1.1}
+.section{padding:5rem 0}
+hr.div{border:none;border-top:1px solid var(--border);margin:3rem 0}
 
-        nav a:hover, nav a.active {
-            color: #0d9488; /* Turquoise accent */
-        }
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.4rem;font-family:var(--font-mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;transition:all .2s}
+.btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(201,168,76,.05)}
+.btn.primary{border-color:var(--accent);color:var(--accent)}
+.btn.primary:hover{background:var(--accent);color:var(--bg)}
+.btn.danger{border-color:var(--red);color:var(--red)}
+.btn.danger:hover{background:var(--red);color:#fff}
+.btn:disabled{opacity:.5;cursor:not-allowed}
 
-        .hero {
-            text-align: center;
-            margin-bottom: 50px;
-        }
+/* INPUTS */
+input,textarea{background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:var(--font-body);font-size:.93rem;padding:.7rem 1rem;width:100%;outline:none;transition:border-color .2s;resize:vertical}
+input:focus,textarea:focus{border-color:var(--accent)}
+input::placeholder,textarea::placeholder{color:var(--text3)}
+label.lbl{display:block;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);margin-bottom:.35rem}
+.fgrp{margin-bottom:1.1rem}
 
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: #cbd5e1;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-        }
+/* ═══ NAVBAR ═══ */
+#nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2rem;transition:all .3s}
+#nav.scrolled{background:rgba(10,10,8,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.8rem 2rem}
+.nav-in{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-mono);font-size:1.1rem;color:var(--text)!important;letter-spacing:.05em}
+.nav-logo span.br{color:var(--accent)}
+.nav-links{display:flex;list-style:none;gap:2rem}
+.nav-links a{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);position:relative;transition:color .2s}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--accent);transition:width .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--accent)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+#nav-toggle{display:none;background:none;border:none;color:var(--text);cursor:pointer;font-size:1.3rem;padding:.2rem}
 
-        .hero h1 {
-            font-size: 28px;
-            margin-bottom: 15px;
-            color: #1a202c;
-        }
+/* ═══ HERO ═══ */
+#hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:80px}
+.hero-lines{position:absolute;inset:0;display:flex;justify-content:space-around;pointer-events:none}
+.h-line{width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(201,168,76,.06) 30%,rgba(201,168,76,.06) 70%,transparent);animation:fadeIn 1s ease forwards;opacity:0}
+#hero::after{content:'';position:absolute;top:20%;left:-20%;width:60%;height:60%;background:radial-gradient(ellipse,rgba(201,168,76,.06) 0%,transparent 70%);pointer-events:none}
+.hero-content{position:relative;z-index:1;padding:3rem 0 5rem}
+.hero-eye{display:flex;align-items:center;gap:.6rem;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:1.5rem}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
+.hero-name{font-size:clamp(3.5rem,10vw,7rem);font-weight:900;line-height:1;display:block;background:linear-gradient(135deg,var(--text) 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:clamp(1.3rem,3.5vw,2.3rem);font-weight:400;font-style:italic;color:var(--text2);display:block;margin-bottom:1.5rem}
+#typed{color:var(--accent);font-style:normal;font-weight:700}
+.cursor{display:inline-block;width:3px;height:.85em;background:var(--accent);margin-left:2px;vertical-align:text-bottom;animation:blink .9s step-end infinite}
+.hero-desc{max-width:520px;color:var(--text2);font-size:1.02rem;line-height:1.8;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:4rem}
+.scroll-hint{display:flex;align-items:center;gap:1rem;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text3)}
+.scroll-line{width:40px;height:1px;background:var(--border);position:relative;overflow:hidden}
+.scroll-line::after{content:'';position:absolute;left:-100%;top:0;width:100%;height:100%;background:var(--accent);animation:scrollSlide 2s ease-in-out infinite}
 
-        .hero p {
-            font-size: 18px;
-            color: #4a5568;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+/* ═══ ABOUT ═══ */
+.about-grid{display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start}
+.about-left{position:sticky;top:100px}
+.about-body p{color:var(--text2);margin-bottom:1.1rem;font-size:.98rem;line-height:1.85;border-left:2px solid var(--border);padding-left:1.1rem}
+.about-body p:first-child{border-left-color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:2.5rem}
+.stat{background:var(--bg);padding:1.1rem .9rem;display:flex;flex-direction:column;gap:.2rem}
+.stat-n{font-family:var(--font-display);font-size:1.7rem;font-weight:900;color:var(--accent);line-height:1}
+.stat-l{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)}
 
-        .projects-section {
-            margin-bottom: 40px;
-        }
+/* ═══ SKILLS ═══ */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.sk-group{background:var(--bg2);border:1px solid var(--border);padding:1.4rem}
+.sk-cat{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.4rem;font-weight:400;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
+.sk-item{margin-bottom:1rem}
+.sk-hd{display:flex;justify-content:space-between;margin-bottom:.35rem}
+.sk-nm{font-size:.86rem;color:var(--text2)}
+.sk-pc{font-family:var(--font-mono);font-size:.67rem;color:var(--text3)}
+.sk-bar{height:2px;background:var(--border);overflow:hidden}
+.sk-fill{height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));animation:growBar 1.2s ease forwards;transform-origin:left}
 
-        .projects-section h2 {
-            font-size: 22px;
-            margin-bottom: 20px;
-            color: #1a202c;
-        }
+/* ═══ PROJECTS ═══ */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
+.proj-card{background:var(--bg);padding:1.7rem;display:flex;flex-direction:column;gap:.7rem;position:relative;overflow:hidden;transition:background .2s}
+.proj-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--accent);transition:height .3s}
+.proj-card:hover{background:var(--bg2)}
+.proj-card:hover::before{height:100%}
+.proj-num{font-family:var(--font-mono);font-size:.62rem;color:var(--text3);letter-spacing:.1em}
+.proj-title{font-size:1.02rem;font-weight:700;color:var(--text);font-family:var(--font-display)}
+.proj-desc{font-size:.86rem;color:var(--text2);line-height:1.7;flex:1}
+.proj-tags{display:flex;flex-wrap:wrap;gap:.35rem}
+.proj-links{display:flex;gap:.6rem;margin-top:.4rem}
+.proj-link{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border:1px solid var(--border);color:var(--text3);font-size:.75rem;transition:all .2s;cursor:pointer}
+.proj-link:hover{border-color:var(--accent);color:var(--accent)}
 
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
+/* ═══ CONTACT ═══ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.contact-text p{color:var(--text2);margin-bottom:1rem;font-size:.98rem;line-height:1.8}
+.contact-items{display:flex;flex-direction:column;gap:.65rem}
+.contact-item{display:flex;align-items:center;gap:.75rem;padding:.85rem 1.1rem;border:1px solid var(--border);color:var(--text2);font-family:var(--font-mono);font-size:.8rem;transition:all .2s;text-decoration:none}
+.contact-item:hover{border-color:var(--accent);color:var(--accent);background:rgba(201,168,76,.04)}
+.ci-icon{width:18px;flex-shrink:0;text-align:center}
 
-        .project-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            padding: 25px;
-            border-radius: 8px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+/* ═══ BLOG ═══ */
+#blog-page{display:none;padding-top:100px;min-height:100vh}
+.blog-list{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border)}
+.blog-card{background:var(--bg);padding:1.7rem 2rem;cursor:pointer;transition:background .2s;position:relative;overflow:hidden}
+.blog-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--accent);transition:width .3s}
+.blog-card:hover{background:var(--bg2)}
+.blog-card:hover::after{width:100%}
+.blog-card:hover .blog-card-title{color:var(--accent)}
+.blog-date{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;color:var(--text3);text-transform:uppercase;margin-bottom:.5rem}
+.blog-card-title{font-size:1.35rem;font-weight:700;margin-bottom:.55rem;transition:color .2s}
+.blog-excerpt{color:var(--text2);font-size:.9rem;line-height:1.7;margin-bottom:.9rem}
+.blog-read{font-family:var(--font-mono);font-size:.7rem;color:var(--accent);letter-spacing:.08em}
+.post-view{display:none;animation:fadeInUp .3s ease}
+.post-view.active{display:block}
+.post-content{color:var(--text2);font-size:.97rem;line-height:1.9;max-width:680px}
+.post-content h2{font-size:1.35rem;color:var(--text);margin:1.8rem 0 .65rem}
+.post-content p{margin-bottom:1.1rem}
+.post-content ul,.post-content ol{padding-left:1.4rem;margin-bottom:1.1rem}
+.post-content li{margin-bottom:.35rem}
+.post-content strong{color:var(--text)}
+.post-content code{background:var(--bg3);padding:.1em .45em;font-size:.83em;border:1px solid var(--border);color:var(--accent)}
+.post-content pre{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--accent);padding:1.1rem;overflow-x:auto;margin:1.3rem 0}
+.post-content pre code{background:none;border:none;color:var(--text);padding:0}
+.post-content blockquote{border-left:3px solid var(--accent);padding:.5rem 1.1rem;margin:1.3rem 0;color:var(--text3);font-style:italic;background:var(--bg2)}
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(13, 148, 136, 0.1);
-            border-color: #0d9488;
-        }
+/* ═══ DIARY ═══ */
+#diary-page{display:none;padding-top:100px;min-height:100vh}
+.diary-hd{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:2rem}
+.diary-hd-actions{display:flex;gap:.5rem;flex-wrap:wrap;padding-top:.4rem}
+.diary-pub-notice{display:flex;align-items:center;gap:1rem;background:rgba(201,168,76,.06);border:1px solid var(--accent2);padding:.7rem 1.1rem;font-family:var(--font-mono);font-size:.75rem;color:var(--text2);margin-bottom:1.5rem;flex-wrap:wrap}
+.diary-pub-notice span:last-child{color:var(--accent);margin-left:auto}
 
-        .project-card h3 {
-            color: #0d9488;
-            margin-bottom: 10px;
-            font-size: 20px;
-        }
+/* Login */
+.diary-login{max-width:400px;margin:0 auto 3rem;background:var(--bg2);border:1px solid var(--border);padding:2.3rem;text-align:center}
+.diary-login.shake{animation:shake .4s ease}
+.login-icon{width:52px;height:52px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 1.3rem;color:var(--accent);font-size:1.4rem}
+.diary-login h3{font-size:1.3rem;margin-bottom:.5rem}
+.diary-login p{color:var(--text2);font-size:.86rem;margin-bottom:1.3rem;line-height:1.6}
+.pw-wrap{position:relative}
+.pw-toggle{position:absolute;right:.75rem;bottom:.72rem;background:none;border:none;color:var(--text3);cursor:pointer;font-size:.95rem;transition:color .2s;padding:.2rem}
+.pw-toggle:hover{color:var(--accent)}
+.login-err{color:var(--red);font-size:.8rem;margin-bottom:.9rem;font-family:var(--font-mono)}
 
-        .project-card p {
-            color: #718096;
-            font-size: 15px;
-            margin-bottom: 15px;
-        }
+/* Write form */
+.write-form{background:var(--bg2);border:1px solid var(--accent2);padding:1.4rem;margin-bottom:1.8rem;animation:fadeInUp .3s ease}
+.write-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.4rem;flex-wrap:wrap;gap:.65rem}
+.write-hd h4{font-size:1.05rem}
+.write-hd-btns{display:flex;gap:.4rem;flex-wrap:wrap}
+.write-err{color:var(--red);font-size:.8rem;margin-bottom:.9rem;font-family:var(--font-mono);background:rgba(201,76,76,.07);padding:.45rem .75rem;border:1px solid rgba(201,76,76,.2)}
+.mood-row{display:flex;gap:.35rem;flex-wrap:wrap}
+.mood-btn{background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:.3rem .65rem;font-size:.76rem;cursor:pointer;transition:all .2s;font-family:var(--font-body)}
+.mood-btn:hover,.mood-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(201,168,76,.06)}
+.md-preview{background:var(--bg3);border:1px solid var(--border);padding:1.1rem;min-height:160px;color:var(--text2);line-height:1.8;font-size:.93rem}
 
-        .btn {
-            display: inline-block;
-            background: #ffffff;
-            color: #2d3748;
-            border: 1px solid #cbd5e1;
-            padding: 8px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-        }
+/* Entries */
+.diary-filter{margin-bottom:1.3rem}
+.diary-filter input{max-width:340px}
+.entries{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border)}
+.entry-card{background:var(--bg);padding:1.4rem;transition:background .2s}
+.entry-card:hover{background:var(--bg2)}
+.entry-hd{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+.entry-meta{display:flex;align-items:center;gap:.7rem;margin-bottom:.35rem;font-family:var(--font-mono);font-size:.67rem;color:var(--text3)}
+.entry-mood{font-size:.82rem;font-family:var(--font-body)}
+.entry-title{font-size:1.1rem;font-weight:700;cursor:pointer;transition:color .2s;margin-bottom:.45rem}
+.entry-title:hover{color:var(--accent)}
+.entry-acts{display:flex;gap:.35rem;flex-shrink:0}
+.entry-body{margin-top:1.3rem;padding-top:1.3rem;border-top:1px solid var(--border);color:var(--text2);font-size:.92rem;line-height:1.85;animation:fadeIn .25s ease}
+.entry-body h2,.entry-body h3{color:var(--text);margin:1rem 0 .4rem;font-size:1.1rem}
+.entry-body code{background:var(--bg3);padding:.1em .4em;font-size:.83em;border:1px solid var(--border)}
+.entry-body pre{background:var(--bg3);border:1px solid var(--border);padding:.9rem;overflow-x:auto;margin:.9rem 0}
+.entry-body blockquote{border-left:3px solid var(--accent);padding:.4rem 1rem;color:var(--text3);font-style:italic}
+.entry-tags-row{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.5rem}
 
-        .btn:hover {
-            background: #0d9488;
-            color: #ffffff;
-            border-color: #0d9488;
-        }
+/* Loading/Empty */
+.loading-wrap{text-align:center;padding:3rem;color:var(--text3)}
+.dots{display:flex;justify-content:center;gap:6px;margin-bottom:.9rem}
+.dots span{width:7px;height:7px;background:var(--accent);border-radius:50%;animation:bounce 1.2s ease infinite}
+.dots span:nth-child(2){animation-delay:.2s}
+.dots span:nth-child(3){animation-delay:.4s}
+.empty-box{padding:2.3rem;border:1px solid var(--border);text-align:center;color:var(--text3);font-family:var(--font-mono);font-size:.82rem}
+.err-box{padding:2.3rem;border:1px solid rgba(201,76,76,.3);color:var(--red);text-align:center;font-family:var(--font-mono);font-size:.82rem}
 
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid #edf2f7;
-            font-size: 14px;
-            color: #a0aec0;
-        }
+/* ═══ FOOTER ═══ */
+footer{border-top:1px solid var(--border);padding:2.3rem 0;text-align:center}
+footer p{font-family:var(--font-mono);font-size:.75rem;color:var(--text3);margin-top:.4rem}
+.ft-logo{font-family:var(--font-mono);color:var(--accent);font-size:.9rem;letter-spacing:.1em}
 
-        @media (max-width: 600px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
-            }
-            nav a {
-                margin: 0 10px;
-            }
-        }
-    </style>
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:700px){
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:2rem}
+  .about-left{position:static}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .skills-grid{grid-template-columns:1fr}
+  .proj-grid{grid-template-columns:1fr}
+  #nav-toggle{display:flex!important}
+  .nav-links{display:none;position:fixed;top:0;right:0;bottom:0;width:210px;background:var(--bg2);border-left:1px solid var(--border);flex-direction:column;padding:5rem 2rem 2rem;gap:1.4rem;z-index:200;animation:slideRight .25s ease}
+  .nav-links.open{display:flex}
+}
+</style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Header / Navigation -->
-        <header>
-            <div class="logo">আমার পোর্টফোলিও</div>
-            <nav>
-                <a href="#" class="active">Home</a>
-                <a href="#">Projects</a>
-                <a href="#">Contact</a>
-            </nav>
-        </header>
+<!-- ════════════════════════════════════
+     CONFIGURATION (JavaScript এ বদলাও)
+     ════════════════════════════════════ -->
+<script>
+const CONFIG = {
+  name: "Syed",                          // তোমার নাম
+  tagline: ["Python Developer","Web Scraper","Bot Builder","Android Hacker","Self-Taught Coder"],
+  bio: "Self-taught developer from Bangladesh. I build automation tools, bots, and web scrapers — all from a phone running Termux. Passionate about Arabic linguistics & Islamic sciences.",
+  location: "Bangladesh 🇧🇩",
+  available: true,
 
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="profile-img">👨‍💻</div>
-            <h1>আসসালামু আলাইকুম, আমি একজন ডেভেলপার</h1>
-            <p>আমি এইচটিএমএল, সিএসএস এবং জাভাস্ক্রিপ্ট ব্যবহার করে ক্লিন এবং ইউজার-ফ্রেন্ডলি ওয়েবসাইট তৈরি করতে পছন্দ করি। এটি গিটহাব পেজেসে হোস্টিং টেস্ট করার জন্য একটি সাধারণ ডেমো সাইট।</p>
-        </section>
+  // Contact
+  email: "your@email.com",
+  github: "https://github.com/your-username",
+  telegram: "https://t.me/yourusername",
 
-        <!-- Projects Section -->
-        <section class="projects-section">
-            <h2>ফিচার্ড প্রজেক্টসমূহ</h2>
-            <div class="project-grid">
-                
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <h3>ই-কমার্স চ্যাটবট</h3>
-                    <p>মেটা ডেভেলপার অ্যাপ এবং হোয়াটসঅ্যাপ বিজনেস এপিআই ব্যবহার করে তৈরি একটি অটোমেটেড কমার্স সিস্টেম।</p>
-                    <a href="#" class="btn">View on GitHub</a>
-                </div>
+  // Diary config
+  GITHUB_TOKEN: "",         // ← তোমার GitHub token (gist scope)
+  GITHUB_USERNAME: "",      // ← তোমার GitHub username
+  GIST_ID: "",              // ← প্রথমে খালি, একবার save হলে ID দাও
+  DIARY_PASSWORD: "changeme123",  // ← তোমার diary password
 
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <h3>ওয়েদার অ্যাপ</h3>
-                    <p>রিয়েল-টাইম আবহাওয়ার তথ্য দেখানোর জন্য এপিআই ইন্টিগ্রেশন ভিত্তিক একটি প্রজেক্ট।</p>
-                    <a href="#" class="btn">View on GitHub</a>
-                </div>
+  // About stats
+  stats: [
+    {n:"3+", l:"Years Coding"},
+    {n:"10+", l:"Projects"},
+    {n:"100%", l:"Self-Taught"},
+    {n:"1", l:"Phone as PC"},
+  ],
 
-            </div>
-        </section>
+  // Skills
+  skills: [
+    {cat:"Languages", items:[
+      {n:"Python",v:85},{n:"JavaScript",v:65},{n:"Bash/Shell",v:70},{n:"HTML/CSS",v:75}
+    ]},
+    {cat:"Tools & Libs", items:[
+      {n:"Selenium/BS4",v:80},{n:"Pillow",v:75},{n:"React",v:55},{n:"Termux/Linux",v:80}
+    ]},
+    {cat:"Domains", items:[
+      {n:"Web Scraping",v:85},{n:"Bot Development",v:80},{n:"FB Automation",v:75},{n:"Android",v:70}
+    ]},
+  ],
 
-        <!-- Footer -->
-        <footer>
-            &copy; 2026 | Built with GitHub Pages
-        </footer>
+  // Projects
+  projects: [
+    {num:"001",title:"Facebook News Automator",desc:"Scrapes Bengali news, generates photo cards with Pillow, posts automatically with scheduling.",tags:["Python","Pillow","Selenium"],gh:"",live:""},
+    {num:"002",title:"WhatsApp Bot",desc:"Automation bot in Termux — commands, auto-replies, media sharing.",tags:["Python","Termux","Android"],gh:"",live:""},
+    {num:"003",title:"Bengali OCR Pipeline",desc:"OCR for Bengali books using Surya OCR on Kaggle. Handles conjunct characters.",tags:["Python","Surya OCR","Kaggle"],gh:"",live:""},
+    {num:"004",title:"Bengali TTS System",desc:"Multilingual Edge TTS supporting Bengali, Arabic, English with ffmpeg merging.",tags:["Python","TTS","ffmpeg"],gh:"",live:""},
+    {num:"005",title:"Voice Cloning",desc:"Storyteller voice cloning using Fish Audio S2 for professional Bengali podcast audio.",tags:["Fish Audio","Kaggle","AI"],gh:"",live:""},
+    {num:"006",title:"This Portfolio",desc:"React-style portfolio with public diary, blog, GitHub Gist storage. Single HTML file.",tags:["HTML","CSS","JS"],gh:"",live:""},
+  ],
+
+  // Blog posts
+  blog: [
+    {
+      id:1,
+      title:"How I Learned to Code on a Phone",
+      date:"2024-12-01",
+      tags:["life","coding","termux"],
+      excerpt:"Most developers have a MacBook. I have a Redmi Note 7 Pro and Termux. Here's how that works.",
+      content:`<h2>My Setup</h2><p>Most developers start with a proper computer. I started with <strong>Termux</strong> on an Android phone.</p><pre><code>pkg install python\npip install requests beautifulsoup4</code></pre><p>That's it. That's my "IDE". No fancy autocomplete, no debugger — just a terminal and curiosity.</p><h2>What I've Built</h2><ul><li>Facebook automation bots</li><li>Web scrapers for Bengali news</li><li>Bengali TTS systems</li><li>WhatsApp bots</li></ul><h2>The Lesson</h2><p>The constraint <em>is</em> the teacher. Working with limited resources forces you to understand every line of code deeply.</p>`
+    },
+    {
+      id:2,
+      title:"Exploring Arabic Linguistics through Quranic Text",
+      date:"2024-11-15",
+      tags:["arabic","linguistics","quran"],
+      excerpt:"Why Classical Arabic is the most precise language I've ever studied — and what it taught me about structure.",
+      content:`<h2>The Beauty of Arabic Morphology (الصرف)</h2><p>Arabic is built on <strong>trilateral roots (جذر ثلاثي)</strong>. Every word traces back to a 3-letter root that carries a core meaning.</p><p>For example, the root <strong>ك-ت-ب</strong> (k-t-b) means "to write":</p><ul><li>كَتَبَ — he wrote</li><li>كِتَاب — book</li><li>كَاتِب — writer</li><li>مَكْتَبَة — library</li></ul><h2>Why This Matters for Programmers</h2><p>It's remarkably similar to functions and transformations in code. The same "data" (root) processed through different "functions" (patterns/أوزان) gives different outputs.</p><p>Arabic linguistics trained my brain to see patterns everywhere.</p>`
+    },
+  ],
+};
+</script>
+
+<!-- ════ NAVBAR ════ -->
+<nav id="nav">
+  <div class="nav-in">
+    <a href="#" class="nav-logo" onclick="showPage('home')">
+      <span class="br">[</span><span id="nav-name"></span><span class="br">]</span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#" onclick="showPage('blog');return false">Blog</a></li>
+      <li><a href="#" onclick="showPage('diary');return false">Diary</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button id="nav-toggle" onclick="toggleNav()" style="display:none">☰</button>
+  </div>
+</nav>
+
+<!-- ════ HOME PAGE ════ -->
+<main id="home-page">
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-lines" id="hero-lines"></div>
+    <div class="wrap hero-content">
+      <div class="hero-eye afu s1">
+        <span class="dot" id="avail-dot"></span>
+        <span id="avail-text"></span>
+      </div>
+      <h1>
+        <span class="hero-name afu s2" id="hero-name-el"></span>
+        <span class="hero-sub afu s2">
+          <span id="typed"></span><span class="cursor"></span>
+        </span>
+      </h1>
+      <p class="hero-desc afu s3" id="hero-bio"></p>
+      <div class="hero-btns afu s4">
+        <a href="#projects" class="btn primary">View Projects</a>
+        <a href="#contact" class="btn">Get in Touch</a>
+      </div>
+      <div class="scroll-hint afu s5">
+        <div class="scroll-line"></div>
+        <span>scroll</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-left">
+          <p class="label">01 — About</p>
+          <h2 class="sec-title">A Developer<br><em>by Curiosity</em></h2>
+        </div>
+        <div>
+          <div class="about-body" id="about-body"></div>
+          <div class="stats" id="stats-el"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="wrap">
+      <p class="label">02 — Skills</p>
+      <h2 class="sec-title">What I Work With</h2>
+      <div class="skills-grid" id="skills-el"></div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="wrap">
+      <p class="label">03 — Projects</p>
+      <h2 class="sec-title">Things I've Built</h2>
+      <div class="proj-grid" id="proj-el"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <p class="label">05 — Contact</p>
+      <h2 class="sec-title">Let's Connect</h2>
+      <div class="contact-grid">
+        <div class="contact-text">
+          <p>Freelance কাজের জন্য, collaboration এর জন্য, অথবা শুধু কথা বলতে চাইলে — reach out করো।</p>
+          <p>Web scraping, automation, আর bot development এর কাজ নিচ্ছি।</p>
+        </div>
+        <div class="contact-items" id="contact-el"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ════ BLOG PAGE ════ -->
+<div id="blog-page">
+  <div class="wrap">
+    <button class="btn" onclick="showPage('home')" style="margin-bottom:1.5rem">← Back</button>
+    <div id="blog-list-view">
+      <p class="label">04 — Blog</p>
+      <h1 class="sec-title">Articles & Thoughts</h1>
+      <p style="color:var(--text2);margin-bottom:2rem;font-size:1rem">Coding, linguistics, life — things I think about.</p>
+      <div class="blog-list" id="blog-list-el"></div>
+    </div>
+    <div id="post-view" class="post-view">
+      <button class="btn" onclick="closePost()" style="margin-bottom:1.8rem">← Back to Blog</button>
+      <div id="post-meta" style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:.9rem"></div>
+      <h1 id="post-title" style="font-size:clamp(1.8rem,5vw,3rem);font-weight:900;line-height:1.15;margin-bottom:2rem"></h1>
+      <hr class="div">
+      <div class="post-content" id="post-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ DIARY PAGE ════ -->
+<div id="diary-page">
+  <div class="wrap">
+    <div class="diary-hd">
+      <div>
+        <button class="btn" onclick="showPage('home')" style="margin-bottom:.8rem">← Back</button>
+        <p class="label">04 — Diary</p>
+        <h1 class="sec-title" style="margin-bottom:.3rem">📔 My Diary</h1>
+        <p id="diary-count" style="color:var(--text2);font-family:var(--font-mono);font-size:.78rem"></p>
+      </div>
+      <div class="diary-hd-actions">
+        <button class="btn" onclick="loadEntries()" title="Refresh">↻ Refresh</button>
+        <button class="btn primary" id="btn-new-entry" onclick="toggleWriteForm()" style="display:none">+ New Entry</button>
+        <button class="btn danger" id="btn-logout" onclick="diaryLogout()" style="display:none">Logout</button>
+      </div>
     </div>
 
+    <div id="diary-pub-notice" class="diary-pub-notice">
+      <span>👁 Public entries — সবাই দেখতে পাচ্ছে।</span>
+      <span>লিখতে চাও? নিচে login করো ↓</span>
+    </div>
+
+    <!-- Write form (hidden by default) -->
+    <div id="write-form" class="write-form" style="display:none">
+      <div class="write-hd">
+        <h4>New Entry</h4>
+        <div class="write-hd-btns">
+          <button class="btn" onclick="togglePreview()" id="btn-preview">👁 Preview</button>
+          <button class="btn primary" onclick="saveEntry()" id="btn-save">Save Entry</button>
+          <button class="btn" onclick="toggleWriteForm()">Cancel</button>
+        </div>
+      </div>
+      <div id="write-err" style="display:none" class="write-err"></div>
+      <div class="fgrp"><label class="lbl">Title</label><input id="entry-title" placeholder="Entry title..."/></div>
+      <div class="fgrp">
+        <label class="lbl">Mood</label>
+        <div class="mood-row" id="mood-row"></div>
+      </div>
+      <div class="fgrp"><label class="lbl">Tags (comma separated)</label><input id="entry-tags" placeholder="life, coding, thoughts..."/></div>
+      <div class="fgrp">
+        <label class="lbl">Content (Markdown supported)</label>
+        <textarea id="entry-content" rows="11" placeholder="আজকের কথা লেখো... (Markdown supported)"></textarea>
+        <div id="md-preview" class="md-preview" style="display:none"></div>
+      </div>
+    </div>
+
+    <!-- Filter -->
+    <div class="diary-filter" style="margin-bottom:1.2rem">
+      <input id="diary-search" placeholder="🔍 Search by title or tag..." oninput="renderEntries()" style="max-width:340px"/>
+    </div>
+
+    <!-- Entries -->
+    <div id="diary-content"></div>
+
+    <!-- Login (shown when not authed) -->
+    <hr class="div" id="login-divider">
+    <div id="diary-login" class="diary-login">
+      <div class="login-icon">🔒</div>
+      <h3>Private Entry</h3>
+      <p>এই section টি শুধু লেখার জন্য protect করা। Public entries সবাই দেখতে পাবে।</p>
+      <div class="fgrp pw-wrap">
+        <label class="lbl">Password</label>
+        <input type="password" id="diary-pass" placeholder="Enter diary password" onkeydown="if(event.key==='Enter')diaryLogin()" style="padding-right:3rem"/>
+        <button class="pw-toggle" onclick="togglePassVis()" id="eye-btn">👁</button>
+      </div>
+      <div id="login-err" style="display:none" class="login-err"></div>
+      <button class="btn primary" onclick="diaryLogin()" style="width:100%;justify-content:center;margin-top:.5rem">Unlock Diary</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <div class="wrap">
+    <div class="ft-logo" id="ft-logo"></div>
+    <p>Built with HTML · CSS · JS · Hosted on GitHub Pages</p>
+    <p id="ft-year"></p>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════
+     JAVASCRIPT
+     ════════════════════════════════════════════ -->
+<script>
+/* ── State ── */
+let diaryAuthed = sessionStorage.getItem('diary_auth')==='true';
+let diaryEntries = [];
+let currentGistId = CONFIG.GIST_ID || null;
+const GIST_FILE = 'diary-entries.json';
+const MOODS = ['✨ Inspired','😊 Happy','🤔 Thoughtful','😔 Sad','😤 Frustrated','😴 Tired','🙏 Grateful'];
+let selectedMood = MOODS[0];
+let previewActive = false;
+
+/* ── Page Router ── */
+function showPage(page) {
+  document.getElementById('home-page').style.display = page==='home' ? 'block' : 'none';
+  document.getElementById('blog-page').style.display = page==='blog' ? 'block' : 'none';
+  document.getElementById('diary-page').style.display = page==='diary' ? 'block' : 'none';
+  window.scrollTo({top:0, behavior:'smooth'});
+  if(page==='diary') initDiary();
+  // Update active nav
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+}
+
+/* ── Navbar scroll & toggle ── */
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+});
+function toggleNav() {
+  const nl = document.getElementById('nav-links');
+  nl.classList.toggle('open');
+  document.getElementById('nav-toggle').textContent = nl.classList.contains('open') ? '✕' : '☰';
+}
+// Close nav on link click
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
+  document.getElementById('nav-links').classList.remove('open');
+  document.getElementById('nav-toggle').textContent = '☰';
+}));
+
+/* ── Typed effect ── */
+let typIdx=0, charIdx=0, deleting=false;
+function typeLoop() {
+  const cur = CONFIG.tagline[typIdx];
+  document.getElementById('typed').textContent = cur.slice(0, charIdx);
+  if (!deleting) {
+    charIdx++;
+    if (charIdx > cur.length) { deleting=true; setTimeout(typeLoop,1600); return; }
+  } else {
+    charIdx--;
+    if (charIdx < 0) { deleting=false; typIdx=(typIdx+1)%CONFIG.tagline.length; charIdx=0; }
+  }
+  setTimeout(typeLoop, deleting ? 55 : 95);
+}
+
+/* ── Render: Hero lines ── */
+function renderHeroLines() {
+  const el = document.getElementById('hero-lines');
+  for(let i=0;i<8;i++){
+    const d=document.createElement('div');
+    d.className='h-line';
+    d.style.animationDelay=`${i*.15}s`;
+    el.appendChild(d);
+  }
+}
+
+/* ── Render: About ── */
+function renderAbout() {
+  document.getElementById('about-body').innerHTML = `
+    <p>আমি ${CONFIG.name} — বাংলাদেশের একজন self-taught developer। কোনো formal CS degree নেই, কিন্তু একটা Android phone আর Termux দিয়ে Python, automation, আর bot building শিখেছি।</p>
+    <p>Web scraping, Facebook automation, WhatsApp bots, Bengali TTS — এই projects গুলো আমার passion থেকে জন্ম নিয়েছে।</p>
+    <p>Tech এর পাশাপাশি, আমি Classical Arabic linguistics আর Quranic sciences নিয়েও গভীর আগ্রহী।</p>`;
+  document.getElementById('stats-el').innerHTML = CONFIG.stats.map(s=>
+    `<div class="stat"><span class="stat-n">${s.n}</span><span class="stat-l">${s.l}</span></div>`
+  ).join('');
+}
+
+/* ── Render: Skills ── */
+function renderSkills() {
+  document.getElementById('skills-el').innerHTML = CONFIG.skills.map(g=>`
+    <div class="sk-group">
+      <div class="sk-cat">${g.cat}</div>
+      ${g.items.map(s=>`
+        <div class="sk-item">
+          <div class="sk-hd"><span class="sk-nm">${s.n}</span><span class="sk-pc">${s.v}%</span></div>
+          <div class="sk-bar"><div class="sk-fill" style="width:${s.v}%"></div></div>
+        </div>`).join('')}
+    </div>`).join('');
+}
+
+/* ── Render: Projects ── */
+function renderProjects() {
+  document.getElementById('proj-el').innerHTML = CONFIG.projects.map(p=>`
+    <div class="proj-card">
+      <div class="proj-num">${p.num}</div>
+      <div class="proj-title">${p.title}</div>
+      <div class="proj-desc">${p.desc}</div>
+      <div class="proj-tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      <div class="proj-links">
+        ${p.gh ? `<a href="${p.gh}" target="_blank" class="proj-link" title="GitHub">⌥</a>` : ''}
+        ${p.live ? `<a href="${p.live}" target="_blank" class="proj-link" title="Live">↗</a>` : ''}
+      </div>
+    </div>`).join('');
+}
+
+/* ── Render: Contact ── */
+function renderContact() {
+  document.getElementById('contact-el').innerHTML = `
+    <a href="mailto:${CONFIG.email}" class="contact-item"><span class="ci-icon">✉</span>${CONFIG.email}</a>
+    <a href="${CONFIG.github}" target="_blank" class="contact-item"><span class="ci-icon">⊹</span>${CONFIG.github.replace('https://','')}</a>
+    <a href="${CONFIG.telegram}" target="_blank" class="contact-item"><span class="ci-icon">✈</span>${CONFIG.telegram.replace('https://','')}</a>`;
+}
+
+/* ── Render: Blog ── */
+function renderBlog() {
+  document.getElementById('blog-list-el').innerHTML = CONFIG.blog.map(p=>`
+    <div class="blog-card" onclick="openPost(${p.id})">
+      <div class="blog-date">${new Date(p.date).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}</div>
+      <div class="blog-card-title">${p.title}</div>
+      <p class="blog-excerpt">${p.excerpt}</p>
+      <div style="display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.8rem">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      <span class="blog-read">Read more →</span>
+    </div>`).join('');
+}
+
+function openPost(id) {
+  const p = CONFIG.blog.find(b=>b.id===id);
+  if(!p) return;
+  document.getElementById('blog-list-view').style.display='none';
+  const pv = document.getElementById('post-view');
+  pv.classList.add('active');
+  document.getElementById('post-title').textContent = p.title;
+  document.getElementById('post-meta').innerHTML = `
+    <span style="font-family:var(--font-mono);font-size:.66rem;color:var(--text3);text-transform:uppercase;letter-spacing:.1em">${new Date(p.date).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}</span>
+    ${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}`;
+  document.getElementById('post-body').innerHTML = p.content;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function closePost() {
+  document.getElementById('blog-list-view').style.display='block';
+  document.getElementById('post-view').classList.remove('active');
+}
+
+/* ══════════════════════════════
+   DIARY — GitHub Gist API
+   ══════════════════════════════ */
+function initDiary() {
+  updateDiaryUI();
+  if(!diaryEntries.length) loadEntries();
+}
+
+function updateDiaryUI() {
+  const authed = diaryAuthed;
+  document.getElementById('btn-new-entry').style.display = authed ? 'inline-flex' : 'none';
+  document.getElementById('btn-logout').style.display = authed ? 'inline-flex' : 'none';
+  document.getElementById('diary-login').style.display = authed ? 'none' : 'block';
+  document.getElementById('login-divider').style.display = authed ? 'none' : 'block';
+  document.getElementById('diary-pub-notice').style.display = authed ? 'none' : 'flex';
+}
+
+function diaryLogin() {
+  const pass = document.getElementById('diary-pass').value;
+  const errEl = document.getElementById('login-err');
+  if(pass === CONFIG.DIARY_PASSWORD) {
+    sessionStorage.setItem('diary_auth','true');
+    diaryAuthed = true;
+    errEl.style.display='none';
+    updateDiaryUI();
+  } else {
+    errEl.textContent = '❌ ভুল password। আবার চেষ্টা করো।';
+    errEl.style.display='block';
+    const box = document.getElementById('diary-login');
+    box.classList.add('shake');
+    setTimeout(()=>box.classList.remove('shake'),500);
+  }
+}
+
+function diaryLogout() {
+  sessionStorage.removeItem('diary_auth');
+  diaryAuthed = false;
+  document.getElementById('write-form').style.display='none';
+  updateDiaryUI();
+}
+
+function togglePassVis() {
+  const inp = document.getElementById('diary-pass');
+  const btn = document.getElementById('eye-btn');
+  if(inp.type==='password'){inp.type='text';btn.textContent='🙈';}
+  else{inp.type='password';btn.textContent='👁';}
+}
+
+/* ── Load entries from Gist ── */
+async function loadEntries() {
+  const ct = document.getElementById('diary-content');
+  ct.innerHTML = `<div class="loading-wrap"><div class="dots"><span></span><span></span><span></span></div><p>Loading entries...</p></div>`;
+
+  try {
+    if (!CONFIG.GITHUB_TOKEN || !CONFIG.GITHUB_USERNAME) {
+      // Demo mode — show empty
+      diaryEntries = [];
+      renderEntries();
+      return;
+    }
+
+    let gistId = currentGistId;
+
+    if (!gistId) {
+      // Search user's gists for our file
+      const r = await fetch(`https://api.github.com/users/${CONFIG.GITHUB_USERNAME}/gists`, {
+        headers: { Authorization: `Bearer ${CONFIG.GITHUB_TOKEN}` }
+      });
+      if(r.ok) {
+        const gists = await r.json();
+        const found = gists.find(g => g.files[GIST_FILE]);
+        if(found) gistId = found.id;
+      }
+    }
+
+    if(gistId) {
+      currentGistId = gistId;
+      const r = await fetch(`https://api.github.com/gists/${gistId}`);
+      if(r.ok) {
+        const data = await r.json();
+        const content = data.files[GIST_FILE]?.content;
+        if(content) diaryEntries = JSON.parse(content);
+      }
+    } else {
+      diaryEntries = [];
+    }
+    renderEntries();
+  } catch(e) {
+    ct.innerHTML = `<div class="err-box">⚠️ Error: ${e.message}<br><small style="color:var(--text3);display:block;margin-top:.5rem">GitHub token configure করা হয়েছে? CONFIG এ দেখো।</small></div>`;
+  }
+}
+
+async function saveEntries(entries) {
+  if(!CONFIG.GITHUB_TOKEN) throw new Error('GitHub token not set in CONFIG');
+  const body = {
+    description: 'Portfolio Diary — Public Entries',
+    public: true,
+    files: { [GIST_FILE]: { content: JSON.stringify(entries, null, 2) } }
+  };
+  const headers = { Authorization: `Bearer ${CONFIG.GITHUB_TOKEN}`, 'Content-Type':'application/json' };
+
+  if(currentGistId) {
+    const r = await fetch(`https://api.github.com/gists/${currentGistId}`, { method:'PATCH', headers, body: JSON.stringify(body) });
+    if(!r.ok) throw new Error('Failed to update gist');
+  } else {
+    const r = await fetch('https://api.github.com/gists', { method:'POST', headers, body: JSON.stringify(body) });
+    if(!r.ok) throw new Error('Failed to create gist');
+    const d = await r.json();
+    currentGistId = d.id;
+    console.log('✅ Gist created! ID:', currentGistId, '— Add this to CONFIG.GIST_ID');
+    alert(`✅ First diary entry saved!\nGist ID: ${currentGistId}\n\nCopy this ID and set it in CONFIG.GIST_ID in the HTML file.`);
+  }
+  diaryEntries = entries;
+}
+
+/* ── Mood picker ── */
+function renderMoodPicker() {
+  document.getElementById('mood-row').innerHTML = MOODS.map(m=>
+    `<button class="mood-btn${m===selectedMood?' active':''}" onclick="selectMood('${m.replace(/'/g,"\\'")}',this)">${m}</button>`
+  ).join('');
+}
+function selectMood(m, btn) {
+  selectedMood = m;
+  document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+/* ── Write form ── */
+function toggleWriteForm() {
+  const wf = document.getElementById('write-form');
+  const showing = wf.style.display !== 'none';
+  wf.style.display = showing ? 'none' : 'block';
+  document.getElementById('btn-new-entry').textContent = showing ? '+ New Entry' : 'Cancel';
+  if(!showing) {
+    renderMoodPicker();
+    document.getElementById('entry-title').value = '';
+    document.getElementById('entry-content').value = '';
+    document.getElementById('entry-tags').value = '';
+    document.getElementById('write-err').style.display='none';
+    previewActive = false;
+    document.getElementById('entry-content').style.display='block';
+    document.getElementById('md-preview').style.display='none';
+    document.getElementById('btn-preview').textContent='👁 Preview';
+  }
+}
+
+function togglePreview() {
+  previewActive = !previewActive;
+  const txt = document.getElementById('entry-content');
+  const prev = document.getElementById('md-preview');
+  const btn = document.getElementById('btn-preview');
+  if(previewActive) {
+    prev.innerHTML = simpleMarkdown(txt.value) || '<em>Nothing to preview</em>';
+    txt.style.display='none'; prev.style.display='block'; btn.textContent='✏️ Edit';
+  } else {
+    txt.style.display='block'; prev.style.display='none'; btn.textContent='👁 Preview';
+  }
+}
+
+async function saveEntry() {
+  const title = document.getElementById('entry-title').value.trim();
+  const content = document.getElementById('entry-content').value.trim();
+  const tags = document.getElementById('entry-tags').value.split(',').map(t=>t.trim()).filter(Boolean);
+  const errEl = document.getElementById('write-err');
+
+  if(!title || !content) {
+    errEl.textContent='Title আর content দুটোই দাও।'; errEl.style.display='block'; return;
+  }
+  errEl.style.display='none';
+  const btn = document.getElementById('btn-save');
+  btn.textContent='Saving...'; btn.disabled=true;
+
+  try {
+    const entry = { id: Date.now().toString(), title, content, mood: selectedMood, tags, date: new Date().toISOString() };
+    const updated = [entry, ...diaryEntries];
+    await saveEntries(updated);
+    toggleWriteForm();
+    renderEntries();
+  } catch(e) {
+    errEl.textContent='❌ '+e.message; errEl.style.display='block';
+  } finally {
+    btn.textContent='Save Entry'; btn.disabled=false;
+  }
+}
+
+async function deleteEntry(id) {
+  if(!confirm('এই entry মুছে ফেলবে?')) return;
+  try {
+    const updated = diaryEntries.filter(e=>e.id!==id);
+    await saveEntries(updated);
+    renderEntries();
+  } catch(e) { alert('Error: '+e.message); }
+}
+
+function toggleEntry(id) {
+  const body = document.getElementById('entry-body-'+id);
+  const btn = document.getElementById('entry-btn-'+id);
+  if(!body) return;
+  const isOpen = body.style.display !== 'none';
+  body.style.display = isOpen ? 'none' : 'block';
+  btn.textContent = isOpen ? 'Read' : 'Collapse';
+}
+
+/* ── Render entries ── */
+function renderEntries() {
+  const ct = document.getElementById('diary-content');
+  const search = document.getElementById('diary-search')?.value?.toLowerCase() || '';
+  const filtered = search
+    ? diaryEntries.filter(e => e.title.toLowerCase().includes(search) || (e.tags||[]).some(t=>t.toLowerCase().includes(search)))
+    : diaryEntries;
+
+  document.getElementById('diary-count').textContent = `Personal thoughts, publicly shared. ${diaryEntries.length} entries.`;
+
+  if(!filtered.length) {
+    ct.innerHTML = `<div class="empty-box">${diaryEntries.length===0 ? 'কোনো entry নেই। প্রথম entry লেখো!' : 'কোনো result পাওয়া যায়নি।'}</div>`;
+    return;
+  }
+
+  ct.innerHTML = `<div class="entries">${filtered.map(e => {
+    const d = new Date(e.date).toLocaleDateString('bn-BD',{year:'numeric',month:'long',day:'numeric'});
+    return `<div class="entry-card">
+      <div class="entry-hd">
+        <div>
+          <div class="entry-meta"><span class="entry-mood">${e.mood||''}</span>${d}</div>
+          <div class="entry-title" onclick="toggleEntry('${e.id}')">${e.title}</div>
+          ${e.tags?.length ? `<div class="entry-tags-row">${e.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>` : ''}
+        </div>
+        <div class="entry-acts">
+          ${diaryAuthed ? `<button class="btn danger" onclick="deleteEntry('${e.id}')" title="Delete" style="padding:.4rem .7rem">✕</button>` : ''}
+          <button class="btn" id="entry-btn-${e.id}" onclick="toggleEntry('${e.id}')">Read</button>
+        </div>
+      </div>
+      <div class="entry-body" id="entry-body-${e.id}" style="display:none">${simpleMarkdown(e.content)}</div>
+    </div>`;
+  }).join('')}</div>`;
+}
+
+/* ── Simple Markdown parser ── */
+function simpleMarkdown(md) {
+  if(!md) return '';
+  return md
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/```([\s\S]*?)```/g,'<pre><code>$1</code></pre>')
+    .replace(/`([^`]+)`/g,'<code>$1</code>')
+    .replace(/^### (.+)$/gm,'<h3>$1</h3>')
+    .replace(/^## (.+)$/gm,'<h2>$1</h2>')
+    .replace(/^# (.+)$/gm,'<h1>$1</h1>')
+    .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g,'<em>$1</em>')
+    .replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>')
+    .replace(/^[-*] (.+)$/gm,'<li>$1</li>')
+    .replace(/(<li>.*<\/li>\n?)+/g,'<ul>$&</ul>')
+    .replace(/\n\n/g,'</p><p>').replace(/^(?!<[hupbl])(.+)/gm,'$1')
+    .replace(/^<p><\/p>$/gm,'');
+}
+
+/* ── Init everything ── */
+function init() {
+  // Navbar
+  document.getElementById('nav-name').textContent = CONFIG.name;
+  document.getElementById('ft-logo').textContent = `[ ${CONFIG.name} ]`;
+  document.getElementById('ft-year').textContent = `© ${new Date().getFullYear()} — All rights reserved`;
+
+  // Hero
+  document.getElementById('hero-name-el').textContent = CONFIG.name;
+  document.getElementById('hero-bio').textContent = CONFIG.bio;
+  document.getElementById('avail-dot').style.background = CONFIG.available ? 'var(--green)' : 'var(--red)';
+  document.getElementById('avail-text').textContent = CONFIG.available ? 'Available for freelance work' : 'Currently unavailable';
+
+  renderHeroLines();
+  renderAbout();
+  renderSkills();
+  renderProjects();
+  renderContact();
+  renderBlog();
+
+  // Start typing
+  setTimeout(typeLoop, 800);
+}
+
+window.addEventListener('DOMContentLoaded', init);
+
+// Responsive nav toggle
+window.addEventListener('resize', () => {
+  const t = document.getElementById('nav-toggle');
+  t.style.display = window.innerWidth <= 700 ? 'flex' : 'none';
+});
+setTimeout(()=>{
+  const t = document.getElementById('nav-toggle');
+  t.style.display = window.innerWidth <= 700 ? 'flex' : 'none';
+}, 0);
+</script>
 </body>
 </html>
